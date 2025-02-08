@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Park System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Car Park System</h1>
+    <div class="parking-lot">
+        <!-- Generate 20 slots -->
+        <script>
+            for (let i = 1; i <= 20; i++) {
+                document.write(`<div class='slot available' id='slot${i}' onclick='toggleSlot(${i})'>${i}</div>`);
+            }
+        </script>
+    </div>
+    <p id="free-slots">Free Slots: 20</p>
+    
+    <script>
+        function toggleSlot(slotId) {
+            let slot = document.getElementById(`slot${slotId}`);
+            if (slot.classList.contains('available')) {
+                slot.classList.remove('available');
+                slot.classList.add('occupied');
+            } else {
+                slot.classList.remove('occupied');
+                slot.classList.add('available');
+            }
+            updateFreeSlots();
+        }
+        
+        function updateFreeSlots() {
+            let freeCount = document.querySelectorAll('.available').length;
+            document.getElementById('free-slots').innerText = `Free Slots: ${freeCount}`;
+        }
+    </script>
+</body>
+</html>
